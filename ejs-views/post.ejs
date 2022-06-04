@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+  <%- include('./partials/nav.ejs') %>
+  <article>
+    <div class="info">
+      <span><%= post.date %></span>
+      <span><%= post.author %></span>
+    </div>
+    <h1><%= post.title %></h1>
+    <p>
+      <%= post.text %>
+    </p>
+  </article>
+</body>
+</html>
