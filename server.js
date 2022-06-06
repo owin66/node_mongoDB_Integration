@@ -13,6 +13,7 @@ const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.ejs`)
 
 //функция перехода путей
 
+
 app.listen(PORT, (error) => {
     error ? console.log(error) : console.log(`listening port ${PORT}`);
 });
