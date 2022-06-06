@@ -11,7 +11,10 @@ const PORT = 3000;
 
 const db = 'mongodb+srv://owin66:Pass321@nodejs.tyesk.mongodb.net/node-blog?retryWrites=true&w=majority'
 
-
+mongoose
+    .connect(db)
+    .then((res) => console.log('Connect to DB'))
+    .catch((error) => console.log(error));
 
 
 const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.ejs`)
@@ -70,7 +73,7 @@ app.get('/posts', (req, res) => {
     res.render(createPath('posts'), {title, posts}) //путь
 })
 app.post('/add-post', (req, res) => {
-    const {title,author,text} = req.body;
+    const {title, author, text} = req.body;
     const post = {
         id: new Date(),
         date: (new Date()).toLocaleTimeString(),
@@ -78,7 +81,7 @@ app.post('/add-post', (req, res) => {
         author,
         text,
     }
-    res.render(createPath('post'), {post,title})
+    res.render(createPath('post'), {post, title})
 })
 
 app.get('/add-post', (req, res) => {
