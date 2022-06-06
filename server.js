@@ -1,13 +1,18 @@
 const express = require('express');
 const path = require('path')
 const morgan = require('morgan')
-
+const mongoose = require('mongoose')
 
 const app = express();
 
 app.set('view engine', 'ejs')
 
 const PORT = 3000;
+
+const db = 'mongodb+srv://owin66:Pass321@nodejs.tyesk.mongodb.net/node-blog?retryWrites=true&w=majority'
+
+
+
 
 const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.ejs`)
 
