@@ -3,7 +3,7 @@ const path = require('path')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const Post = require('./models/post')
-
+const Contact = require('./models/contact')
 
 const app = express();
 
@@ -41,12 +41,13 @@ app.get('/', (req, res) => {
 
 app.get('/contacts', (req, res) => {
     const title = 'Contacts';
-    const contacts = [
-        {name: 'YouTube', link: 'http://youtube.com/YauhenKavalchuk'},
-        {name: 'Twitter', link: 'http://github.com/YauhenKavalchuk'},
-        {name: 'GitHub', link: 'http://twitter.com/YauhenKavalchuk'},
-    ];
-    res.render(createPath('contacts'), {contacts, title}) //путь
+    Contact
+        .find()
+        .then((contacts)=>res.render(createPath('contacts'), {contacts, title}))
+        .catch((error) => {
+        console.log(error)
+        res.render(createPath('error'), {title: 'Error'})
+    })
 })
 
 app.get('/posts/:id', (req, res) => {
@@ -62,17 +63,14 @@ app.get('/posts/:id', (req, res) => {
 })
 
 app.get('/posts', (req, res) => {
-    const title = 'Post';
-    const posts = [
-        {
-            id: '1',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quidem provident, dolores, vero laboriosam nemo mollitia impedit unde fugit sint eveniet, minima odio ipsum sed recusandae aut iste aspernatur dolorem.',
-            title: ' Post tittle',
-            date: '05.05.2021',
-            author: 'Yauhen',
-        }
-    ]
-    res.render(createPath('posts'), {title, posts}) //путь
+    const title = 'Posts';
+    Post
+        .find()
+        .then((posts)=>res.render(createPath('posts'), {posts, title}))
+        .catch((error) => {
+            console.log(error)
+            res.render(createPath('error'), {title: 'Error'})
+        })
 })
 app.post('/add-post', (req, res) => {
     const {title, author, text} = req.body;
