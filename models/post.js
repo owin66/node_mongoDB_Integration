@@ -15,3 +15,7 @@ author:{
     required: true,
 },
 }, {timestamps:true});
+
+const Post = mongoose.model('Post',postSchema)
+
+module.exports = Post;

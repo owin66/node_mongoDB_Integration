@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+const Post = require('./models/post')
+
 
 const app = express();
 
@@ -74,14 +76,15 @@ app.get('/posts', (req, res) => {
 })
 app.post('/add-post', (req, res) => {
     const {title, author, text} = req.body;
-    const post = {
-        id: new Date(),
-        date: (new Date()).toLocaleTimeString(),
-        title,
-        author,
-        text,
-    }
-    res.render(createPath('post'), {post, title})
+    const post = new Post({title, author, text});
+    post
+        .save()
+        .then((result) => res.send(result))
+        .catch((error) => {
+            console.log(error)
+            res.render(createPath('error'), {title: 'Errpr'})
+        })
+
 })
 
 app.get('/add-post', (req, res) => {
