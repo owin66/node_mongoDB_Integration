@@ -82,7 +82,7 @@ app.post('/add-post', (req, res) => {
         .then((result) => res.send(result))
         .catch((error) => {
             console.log(error)
-            res.render(createPath('error'), {title: 'Errpr'})
+            res.render(createPath('error'), {title: 'Error'})
         })
 
 })
