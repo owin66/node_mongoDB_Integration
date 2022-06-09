@@ -52,14 +52,13 @@ app.get('/contacts', (req, res) => {
 
 app.get('/posts/:id', (req, res) => {
     const title = 'Post';
-    const post = {
-        id: '1',
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quidem provident, dolores, vero laboriosam nemo mollitia impedit unde fugit sint eveniet, minima odio ipsum sed recusandae aut iste aspernatur dolorem.',
-        title: ' Post tittle',
-        date: '05.05.2021',
-        author: 'Yauhen',
-    }
-    res.render(createPath('post'), {title, post}) //путь
+    Post
+        .findById(req.params.id)
+        .then((post)=>res.render(createPath('post'), {post, title}))
+        .catch((error) => {
+            console.log(error)
+            res.render(createPath('error'), {title: 'Error'})
+        })
 })
 
 app.get('/posts', (req, res) => {
