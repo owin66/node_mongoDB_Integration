@@ -50,6 +50,7 @@ app.get('/contacts', (req, res) => {
     })
 })
 
+
 app.get('/posts/:id', (req, res) => {
     const title = 'Post';
     Post
