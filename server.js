@@ -77,7 +77,7 @@ app.post('/add-post', (req, res) => {
     const post = new Post({title, author, text});
     post
         .save()
-        .then((result) => res.send(result))
+        .then((result) => res.redirect('/posts'))
         .catch((error) => {
             console.log(error)
             res.render(createPath('error'), {title: 'Error'})
