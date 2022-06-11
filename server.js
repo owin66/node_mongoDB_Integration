@@ -66,6 +66,7 @@ app.get('/posts', (req, res) => {
     const title = 'Posts';
     Post
         .find()
+        .sort({createdAt:-1})
         .then((posts)=>res.render(createPath('posts'), {posts, title}))
         .catch((error) => {
             console.log(error)
