@@ -43,11 +43,11 @@ app.get('/contacts', (req, res) => {
     const title = 'Contacts';
     Contact
         .find()
-        .then((contacts)=>res.render(createPath('contacts'), {contacts, title}))
+        .then((contacts) => res.render(createPath('contacts'), {contacts, title}))
         .catch((error) => {
-        console.log(error)
-        res.render(createPath('error'), {title: 'Error'})
-    })
+            console.log(error)
+            res.render(createPath('error'), {title: 'Error'})
+        })
 })
 
 
@@ -55,7 +55,19 @@ app.get('/posts/:id', (req, res) => {
     const title = 'Post';
     Post
         .findById(req.params.id)
-        .then((post)=>res.render(createPath('post'), {post, title}))
+        .then((post) => res.render(createPath('post'), {post, title}))
+        .catch((error) => {
+            console.log(error)
+            res.render(createPath('error'), {title: 'Error'})
+        })
+})
+app.delete('/posts/:id', (req, res) => {
+    const title = 'Post';
+    Post
+        .findByIdAndDelete(req.params.id)
+        .then((result) => {
+            res.sendStatus(200)
+        })
         .catch((error) => {
             console.log(error)
             res.render(createPath('error'), {title: 'Error'})
@@ -67,22 +79,22 @@ app.get('/edit/:id', (req, res) => {
     const title = 'Edit Post';
     Post
         .findById(req.params.id)
-        .then(post => res.render(createPath('edit-post'), { post, title }))
+        .then(post => res.render(createPath('edit-post'), {post, title}))
         .catch((error) => {
             console.log(error);
-            res.render(createPath('error'), { title: 'Error' });
+            res.render(createPath('error'), {title: 'Error'});
         });
 });
 
 app.put('/edit/:id', (req, res) => {
-    const { title, author, text } = req.body;
-    const { id } = req.params;
+    const {title, author, text} = req.body;
+    const {id} = req.params;
     Post
-        .findByIdAndUpdate(id, { title, author, text })
+        .findByIdAndUpdate(id, {title, author, text})
         .then((result) => res.redirect(`/posts/${id}`))
         .catch((error) => {
             console.log(error);
-            res.render(createPath('error'), { title: 'Error' });
+            res.render(createPath('error'), {title: 'Error'});
         });
 });
 
@@ -90,8 +102,8 @@ app.get('/posts', (req, res) => {
     const title = 'Posts';
     Post
         .find()
-        .sort({createdAt:-1})
-        .then((posts)=>res.render(createPath('posts'), {posts, title}))
+        .sort({createdAt: -1})
+        .then((posts) => res.render(createPath('posts'), {posts, title}))
         .catch((error) => {
             console.log(error)
             res.render(createPath('error'), {title: 'Error'})
