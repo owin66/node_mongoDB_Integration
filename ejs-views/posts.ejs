@@ -28,12 +28,12 @@
 
 <script>
   document.addEventListener('click', (e) => {
-    const id = e.target?.dataset?.id || null;
+    const id = e.target?.dataset?.id || null;//логика удаления постов
     if (id) {
       fetch(`/posts/${id}`, {
         method: 'DELETE',
       }).then(() => {
-        window.location.reload();
+        window.location.reload();//обновление страницы
       });
     }
   });
