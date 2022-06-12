@@ -25,7 +25,7 @@
       fetch(`/posts/${id}`, {
         method: 'DELETE',
       }).then(() => {
-        window.location.href = '/posts';
+        window.location.href = '/posts';//при удаление, редирект на страницу с постами
       });
     }
   });

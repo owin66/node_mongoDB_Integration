@@ -3,9 +3,9 @@
   <%- include('./partials/head.ejs') %>
 <body>
   <%- include('./partials/nav.ejs') %>
-  <form id="post-form" method="post" action="/edit/<%= post.id %>?_method=PUT">
+  <form id="post-form" method="post" action="/edit/<%= post.id %>?_method=PUT"><!--редактирование данных методом пут-->
     <div class="form-info">
-      <label>Post Title
+      <label>Post Title <!--редактирование новости-->
         <input type="text" name="title" value="<%= post.title %>">
       </label>
       <label>Author
