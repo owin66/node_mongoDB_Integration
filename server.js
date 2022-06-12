@@ -2,10 +2,13 @@ const express = require('express');
 const path = require('path')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 const Post = require('./models/post')
 const Contact = require('./models/contact')
 
+
 const app = express();
+
 
 app.set('view engine', 'ejs')
 
@@ -34,6 +37,8 @@ app.use(express.urlencoded({extended: false}))
 
 app.use(express.static('styles'));
 
+app.use(methodOverride('_method'))
+
 app.get('/', (req, res) => {
     const title = 'Home';
     res.render(createPath('index'), {title})//путь
@@ -61,6 +66,7 @@ app.get('/posts/:id', (req, res) => {
             res.render(createPath('error'), {title: 'Error'})
         })
 })
+
 app.delete('/posts/:id', (req, res) => {
     const title = 'Post';
     Post
