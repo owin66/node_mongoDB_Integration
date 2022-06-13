@@ -1,10 +1,10 @@
 const express = require('express');
-const path = require('path')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
-const postRouters = require('./routes/post-routes')
+const postRoutes = require('./routes/post-routes')
 const contactRoutes = require('./routes/contact-routes')
+const createPath = require('/helpers/create-path')
 
 const app = express();
 
@@ -21,8 +21,6 @@ mongoose
     .catch((error) => console.log(error));
 
 
-const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.ejs`)
-
 //функция перехода путей
 
 
@@ -38,7 +36,7 @@ app.use(express.static('styles'));
 
 app.use(methodOverride('_method'))
 
-app.use(postRouters);//подключение
+app.use(postRoutes);//подключение
 app.use(contactRoutes);
 
 app.get('/', (req, res) => {
