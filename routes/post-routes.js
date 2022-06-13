@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router
+const Post = require('../models/post');
 
-const Post = require("./models/post");
+
 router.get('/posts/:id', (req, res) => {
     const title = 'Post';
     Post

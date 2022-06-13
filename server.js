@@ -3,8 +3,8 @@ const path = require('path')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
-const Post = require('./models/post')
 const Contact = require('./models/contact')
+const postRouters = require('./routes/post-routes')
 
 
 const app = express();
