@@ -1,7 +1,7 @@
 const express = require('express')
-const router = express.Router
+const router = express.Router()
 const Post = require('../models/post');
-const createPath = require('/helpers/create-path')
+const createPath = require('../helpers/create-path')
 
 
 router.get('/posts/:id', (req, res) => {

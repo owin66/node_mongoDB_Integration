@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const postRoutes = require('./routes/post-routes')
 const contactRoutes = require('./routes/contact-routes')
-const createPath = require('/helpers/create-path')
+const createPath = require('./helpers/create-path')
 
 const app = express();
 
@@ -16,7 +16,7 @@ const PORT = 3000;
 const db = 'mongodb+srv://owin66:Pass321@nodejs.tyesk.mongodb.net/node-blog?retryWrites=true&w=majority'
 
 mongoose
-    .connect(db)
+    .connect(db,{useNewUrlParser:true,useUnifiedTopology:true})
     .then((res) => console.log('Connect to DB'))
     .catch((error) => console.log(error));
 
@@ -36,14 +36,14 @@ app.use(express.static('styles'));
 
 app.use(methodOverride('_method'))
 
-app.use(postRoutes);//подключение
-app.use(contactRoutes);
 
 app.get('/', (req, res) => {
     const title = 'Home';
     res.render(createPath('index'), {title})//путь
 })
 
+app.use(postRoutes);//подключение
+app.use(contactRoutes);
 
 app.use((req, res) => {
     const title = 'Error Page';
