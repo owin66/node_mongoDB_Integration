@@ -1,7 +1,7 @@
 const Post = require('../models/post');
 const createPath = require('../helpers/create-path')
 
-const getPost = (req,res) => {
+const getPost = (req, res) => {
     const title = 'Post';
     Post
         .findById(req.params.id)
@@ -12,6 +12,20 @@ const getPost = (req,res) => {
         })
 }
 
-module.exports={
+const deletePost = (req, res) => {
+    const title = 'Post';
+    Post
+        .findByIdAndDelete(req.params.id)
+        .then((result) => {
+            res.sendStatus(200)
+        })
+        .catch((error) => {
+            console.log(error)
+            res.render(createPath('error'), {title: 'Error'})
+        })
+}
+
+module.exports = {
     getPost,
+    deletePost,
 }

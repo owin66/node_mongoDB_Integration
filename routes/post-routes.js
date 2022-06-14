@@ -1,23 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const {getPost} = require('../controllers/post-controller')
+const {getPost, deletePost} = require('../controllers/post-controller')
+
 
 
 
 router.get('/posts/:id', getPost)
 
-router.delete('/posts/:id', (req, res) => {
-    const title = 'Post';
-    Post
-        .findByIdAndDelete(req.params.id)
-        .then((result) => {
-            res.sendStatus(200)
-        })
-        .catch((error) => {
-            console.log(error)
-            res.render(createPath('error'), {title: 'Error'})
-        })
-})
+router.delete('/posts/:id', deletePost)
 
 
 router.get('/edit/:id', (req, res) => {
