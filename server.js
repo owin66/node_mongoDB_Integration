@@ -17,7 +17,7 @@ const app = express();
 
 
 app.set('view engine', 'ejs')
-const PORT = '3000'
+
 
 mongoose
     .connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -28,7 +28,7 @@ mongoose
 //функция перехода путей
 
 
-app.listen(process.env.PORT || 3000, (error) => {
+app.listen(process.env.PORT, (error) => {
     error ? console.log(errorMsg(error)) : console.log(successMsg(`listening port ${PORT}`));
 });
 
