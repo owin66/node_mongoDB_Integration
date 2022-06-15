@@ -28,7 +28,7 @@ mongoose
 //функция перехода путей
 
 
-app.listen(PORT, (error) => {
+app.listen(process.env.PORT || 3000, (error) => {
     error ? console.log(errorMsg(error)) : console.log(successMsg(`listening port ${PORT}`));
 });
 
