@@ -6,7 +6,7 @@ const {
     editPost,
     getPosts,
     addPost,
-} = require('../controllers/post-controller')
+} = require('../controllers/api-post-controller')
 
 const router = express.Router();
 
