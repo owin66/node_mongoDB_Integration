@@ -2,7 +2,7 @@ const Post = require('../models/post');
 const Contact = require("../models/contact");
 
 const handleError = (res, error) => {
-    res.status(500).send(error);
+    res.status(500).send(error.message);
 }
 
 const getPost = (req, res) => {
@@ -48,7 +48,6 @@ const addPost = (req, res) => {
 }
 
 const getContacts = (req, res) => {
-    const title = 'Contacts';
     Contact
         .find()
         .then()
