@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config()
 const chalk = require('chalk');
 const morgan = require('morgan')
 const mongoose = require('mongoose')
@@ -16,13 +17,10 @@ const app = express();
 
 
 app.set('view engine', 'ejs')
-
-const PORT = 3000;
-
-const db = 'mongodb+srv://owin66:Pass321@nodejs.tyesk.mongodb.net/node-blog?retryWrites=true&w=majority'
+const PORT = '3000'
 
 mongoose
-    .connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
+    .connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     .then((res) => console.log(successMsg('Connect to DB')))
     .catch((error) => console.log(errorMsg(error)));
 
