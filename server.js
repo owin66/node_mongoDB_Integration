@@ -18,7 +18,6 @@ const app = express();
 
 app.set('view engine', 'ejs')
 
-
 mongoose
     .connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     .then((res) => console.log(successMsg('Connect to DB')))
